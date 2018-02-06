@@ -1,0 +1,23 @@
+{
+  "name": "koa-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "helloWorld": "node app/base/helloWorld.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaohelong/koa-exercise.git"
+  },
+  "author": "helong.gao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gaohelong/koa-exercise/issues"
+  },
+  "homepage": "https://github.com/gaohelong/koa-exercise#readme",
+  "dependencies": {
+    "koa": "^2.4.1"
+  }
+}
