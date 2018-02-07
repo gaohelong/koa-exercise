@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "helloWorld": "node app/base/helloWorld.js",
+    "hiWorld": "node app/base/hiWorld.js",
+    "httpCreateServer": "node app/base/httpCreateServer.js",
+    "httpHttps": "node app/base/httpHttps.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
