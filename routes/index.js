@@ -16,4 +16,9 @@ router.get('/json', async (ctx, next) => {
     };
 });
 
+// 重定向到首页.
+router.get('/redirect', async (ctx, next) => {
+    ctx.redirect('/');
+});
+
 module.exports = router;

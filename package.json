@@ -6,11 +6,15 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "next01": "node example/next-01",
+    "next02": "node example/next-02"
   },
   "dependencies": {
     "debug": "^2.6.3",
+    "formidable": "^1.2.1",
     "koa": "^2.2.0",
+    "koa-body": "^2.6.0",
     "koa-bodyparser": "^3.2.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
