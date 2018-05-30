@@ -18,3 +18,8 @@ sudo koa2 koa-exercisse
 [koa-body](https://github.com/dlau/koa-body)<br>
 [koa-logger](https://github.com/koajs/logger)<br>
 [koa-bodyparser](https://github.com/koajs/bodyparser)<br>
+[koa-convert](https://github.com/koajs/convert)<br>
+[koa-json](https://github.com/koajs/json)<br>
+[koa-onerror](https://github.com/koajs/onerror)<br>
+[koa-views](https://github.com/queckezz/koa-views)<br>
+[pug: node template engine](https://github.com/pugjs/pug)<br>
