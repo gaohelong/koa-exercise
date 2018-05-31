@@ -1,31 +1,49 @@
-var formidable = require('formidable'),
-    http = require('http'),
-    util = require('util');
+const Koa = require('koa');
+const app = new Koa();
+const path = require('path');
+const fs = require('fs');
 
-http.createServer(function(req, res) {
-    if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
-        // parse a file upload
-        var form = new formidable.IncomingForm();
-        form.uploadDir = "/var/gaohelong/www/koa-exercise/upfiles/";
+const formidable = require('formidable');
+const upfile = (ctx, next) => {
+    if (ctx.request.url == '/') {
+        ctx.status = 200;
+        ctx.type = 'html';
+        ctx.body = `<form action="/upload" enctype="multipart/form-data" method="post">
+                        <input type="text" name="title"><br>
+                        <input type="file" name="upload" multiple="multiple"><br>
+                        <input type="submit" value="Upload">
+                    </form>`;
+    } else if (ctx.request.url == '/upload') {
+        var form = new formidable.IncomingForm(),
+            files = [],
+            fields = [];
+
+        form.uploadDir = path.resolve(__dirname, '../upfiles');
         form.keepExtensions = true;
-
-        form.parse(req, function(err, fields, files) {
-            res.writeHead(200, {'content-type': 'text/plain'});
-            res.write('received upload:\n\n');
-            res.end(util.inspect({fields: fields, files: files}));
+        form.parse(ctx.req, function(err, fields, files) {
+            // 文件重命名.
+            let oldName = files.upload.path;
+            let newName = oldName.replace('upload_', '');
+            fs.renameSync(oldName, newName);
         });
 
-        return;
+        form
+            .on('field', function(field, value) {
+                // console.log('field:', field, value);
+                fields.push([field, value]);
+            })
+            .on('file', function(field, file) {
+                // console.log('file:', field, file);
+                files.push([field, file]);
+            })
+            .on('end', function() {
+                console.log('-> upload done');
+            });
+    } else {
+        ctx.response.writeHead(404, {'content-type': 'text/plain'});
+        ctx.response.end('404');
     }
+};
 
-    // show a file upload form
-    res.writeHead(200, {'content-type': 'text/html'});
-    res.end(
-            '<form action="/upload" enctype="multipart/form-data" method="post">'+
-            '<img src="../public/images/upload_9c381b7e9fca3a281601dd611897326d.jpg"/>'+
-            '<input type="text" name="title"><br>'+
-            '<input type="file" name="upload" multiple="multiple"><br>'+
-            '<input type="submit" value="Upload">'+
-            '</form>'
-           );
-}).listen(3000);
+app.use(upfile);
+app.listen(3000);
