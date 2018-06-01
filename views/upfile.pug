@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/css/upfile.css')
+    h1= title
+    p
+        b(class="f16") sha256: 
+        span #{objCrypto}
+    p
+        b(class="f16") md5: 
+        span #{strMd5Crypto}
+    form(action="/upfile/save" enctype="multipart/form-data" method="post")
+        input(type="text" name="title")
+        br
+        input(type="file" name="upload" multiple="multiple")
+        input(type="submit" value="Upload")
