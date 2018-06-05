@@ -28,7 +28,11 @@ exports.saveAction = async (ctx, next) => {
 
     form.uploadDir = path.resolve(__dirname, '../upfiles');
     form.keepExtensions = true;
+    // form.maxFileSize = 1;
     form
+        .on('error', function(err) {
+            console.log(err);
+        })
         .on('field', function(field, value) {
             // console.log('---field:', field, value, '---');
             fields.push([field, value]);
@@ -94,8 +98,9 @@ exports.multerConfig = () => {
  * 上传文件: koa-multer
  */
 exports.multerSaveAction = async (ctx, next) => {
+    let fileName = ctx.req.file != undefined ? ctx.req.file.filename : '请选择要上传的文件';
     await ctx.render('upfile_multer_save', {
-        fileName: ctx.req.file.filename
+        fileName: fileName
     });
 };
 

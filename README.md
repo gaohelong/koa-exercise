@@ -1,7 +1,8 @@
 ### Koa2 Exercise
 
 [Koa中文手册](https://gaohelong.github.io/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[阮一峰-Koa教程](http://www.ruanyifeng.com/blog/2017/08/koa.html)
+[阮一峰-Koa教程](http://www.ruanyifeng.com/blog/2017/08/koa.html)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[集成数据库](http://www.expressjs.com.cn/guide/database-integration.html#mysql)
 
 ```javascript
 # 安装koa-generator.
