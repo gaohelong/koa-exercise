@@ -1,8 +1,5 @@
 const cryptoTools = require('../tools/crypto');
-const formidable = require('formidable');
 const multer = require('koa-multer');
-const fs = require('fs');
-const path = require('path');
 
 /**
  * 上传文件: 首页.
@@ -20,39 +17,10 @@ exports.indexAction = async (ctx, next) => {
 /**
  * 上传文件: 保存.
  */
+const formidableUpload = require('../tools/formidable');
 let fileName = '上传成功!';
 exports.saveAction = async (ctx, next) => {
-    let form = new formidable.IncomingForm();
-    let files = [];
-    let fields = [];
-
-    form.uploadDir = path.resolve(__dirname, '../upfiles');
-    form.keepExtensions = true;
-    // form.maxFileSize = 1;
-    form
-        .on('error', function(err) {
-            console.log(err);
-        })
-        .on('field', function(field, value) {
-            // console.log('---field:', field, value, '---');
-            fields.push([field, value]);
-        })
-        .on('file', function(field, file) {
-            // console.log('---file:', field, file, '---');
-            files.push([field, file]);
-        })
-        .on('end', function() {
-            console.log('-> upload done');
-        });
-    
-    form.parse(ctx.req, async function(err, fields, files) {
-        // 文件重命名.
-        let oldName = files.uploadName.path;
-        let newName = oldName.replace('upload_', '');
-        fs.renameSync(oldName, newName);
-        console.log(newName);
-    });
-
+    let fileName = await formidableUpload(ctx);
     await ctx.render('upfile_save', {
         name: fileName
     });

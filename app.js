@@ -9,6 +9,7 @@ const logger = require('koa-logger');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const upfiles = require('./routes/upfiles');
+const ip = require('./routes/ip');
 
 // error handler
 onerror(app);
@@ -36,6 +37,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(upfiles.routes(), upfiles.allowedMethods());
+app.use(ip.routes(), ip.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {
@@ -47,6 +49,6 @@ app.on('error', (err, ctx) => {
 app.context.token = 'china2018';
 
 // mysql.
-app.context.mysqlQuery = require('./lib/mysql');
+// app.context.mysqlQuery = require('./lib/mysql');
 
 module.exports = app;

@@ -10,10 +10,10 @@ router.get('/', async function (ctx, next) {
 
     let str = '';
     ipList.forEach(function(v, k) {
-        str += `id: ${v.id}<br>`;
+        str += `\nid: ${v.id}`;
     });
 
-    ctx.body = `this is a users response!<br>${str}`;
+    ctx.body = `this is a users response!${str}`;
 });
 
 router.get('/bar', function (ctx, next) {

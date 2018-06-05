@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+    link(rel='stylesheet', href='/css/list.css')
+    p ip list
+    ul
+        each item in list
+            li(class="row")
+                span #{item.id}
+                span #{item.ip_address}
+                span #{item.isp}
+    div 
+        if (onOff)
+            span on #{onOff}
+        else
+            span off #{onOff}
+
+    include ../footer/footer.pug    

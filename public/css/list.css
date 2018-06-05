@@ -1,0 +1,14 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row span:nth-child(1) {
+    flex: 0 1 100px;
+}
+.row span:nth-child(2) {
+    flex: 0 1 120px;
+}
+.row span:nth-child(3) {
+    flex: 0 1 120px;
+}
