@@ -1,10 +1,10 @@
-const env = 'dev';
+console.log(process.env.customProcessEnv);
 
 let config;
-if (env === 'dev') { // 开发.
+if (process.env.customProcessEnv === 'start') { // 开发.
+    config = require('./start');
+} else if (process.env.customProcessEnv === 'dev') { // 测试.
     config = require('./dev');
-} else if (env === 'test') { // 测试.
-    config = require('./test');
 } else { // 线上.
     config = require('./prod');
 }
